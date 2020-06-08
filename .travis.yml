@@ -6,7 +6,6 @@ services:
     - docker
 script:
     - go test -v
-    - CGO-ENABLED=0 go build -o demo
     - echo "$DOCKER_PW" | docker login --username $DOCKER_USER --password-stdin
     - docker build -f Dockerfile -t $DOCKER_USER/demo:latest $DOCKER_USER/demo:$GIT_SHA
     - docker push $DOCKER_USER/demo:latest
